@@ -76,27 +76,20 @@ jobs:
 
     - name: 📨 Отправляем итоговое уведомление
       uses: appleboy/telegram-action@master
-      env:
-        BUILD_RESULT: ${{ needs.build.result }}
-        TEST_RESULT: ${{ needs.test.result }}
-        JOB_STATUS: ${{ job.status }}
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         message: |
-          ${{ env.JOB_STATUS == 'success' && '✅ СБОРКА УСПЕШНА!' || env.JOB_STATUS == 'failure' && '❌ СБОРКА НЕ УДАЛАСЬ!' || env.JOB_STATUS == 'cancelled' && '⚠️ СБОРКА ОТМЕНЕНА' || '' }}
+          Сборка завершена!
           
-          ${{ env.JOB_STATUS == 'success' && 'Все этапы пройдены успешно!' || env.JOB_STATUS == 'failure' && 'Что-то пошло не так. Проверьте логи в GitHub.' || '' }}
+          Проект: ${{ github.repository }}
+          Ветка: ${{ github.ref_name }}
+          Коммит: ${{ github.sha }}
+          Время: ${{ steps.get-time.outputs.current_time }}
           
-          📊 Результаты:
-          • Сборка: ${{ env.BUILD_RESULT }}
-          • Тесты: ${{ env.TEST_RESULT }}
-          • Статус: ${{ env.JOB_STATUS }}
+          Результаты:
+          • Сборка: ${{ needs.build.result }}
+          • Тесты: ${{ needs.test.result }}
+          • Общий статус: ${{ job.status }}
           
-          📋 Детали:
-          • Проект: ${{ github.repository }}
-          • Ветка: ${{ github.ref_name }}
-          • Коммит: ${{ github.sha }}
-          • Время: ${{ steps.get-time.outputs.current_time }}
-          
-          🔗 [Открыть в GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          Ссылка: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
