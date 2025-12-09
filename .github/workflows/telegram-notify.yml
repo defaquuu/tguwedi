@@ -9,98 +9,94 @@ on:
 env:
   DOTNET_VERSION: '8.0.x'
   PROJECT_PATH: 'src/SimpleApp'
+  TEST_PATH: 'tests/SimpleApp.Tests'
 
 jobs:
-  # Джоба 1: Сборка проекта с уведомлениями
-  build-and-notify:
-    name: 💡 Сборка и уведомления
+  build:
+    name: 💡 Сборка проекта
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: 💡 Загружаем код
       uses: actions/checkout@v4
-      
+
     - name: 💡 Устанавливаем .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-        
+
+    - name: 💡 Восстанавливаем зависимости
+      run: dotnet restore
+
+    - name: 💡 Собираем проект
+      run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
+
     - name: 💡 Уведомляем о начале сборки
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         message: |
-          **🚀 НАЧАЛО СБОРКИ!**
+          **Начинаем сборку!**
           
-          📁 *Проект:* ${{ github.repository }}
-          👤 *Автор:* ${{ github.actor }}
-          🌿 *Ветка:* ${{ github.ref_name }}
-          🔑 *Коммит:* ${GITHUB_SHA:0:7}
+          *Проект:* ${{ github.repository }}
+          *Автор:* ${{ github.actor }}
+          *Ветка:* ${{ github.ref_name }}
+          *Коммит:* ${{ github.sha }}
           
-          ⏳ Сборка началась...
-        parse_mode: markdown
-        disable_web_page_preview: true
-        
-    - name: 💡 Восстанавливаем зависимости
-      run: dotnet restore ./${{ env.PROJECT_PATH }}
-      
-    - name: 💡 Собираем проект
-      run: dotnet build ./${{ env.PROJECT_PATH }} --configuration Release --no-restore
-      
+          Ждите результат...
+
+  test:
+    name: ✅ Запуск тестов
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 💬 Загружаем код
+      uses: actions/checkout@v4
+
+    - name: 💬 Устанавливаем .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: ✅ Запускаем тесты
+      run: dotnet test ${{ env.TEST_PATH }} --verbosity normal --logger "trx"
+
+  notify:
+    name: 📨 Итоговое уведомление
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+    - name: 📅 Получаем текущее время
+      id: get-time
+      run: echo "current_time=$(date '+%H:%M:%S %d.%m.%Y')" >> $GITHUB_OUTPUT
+
     - name: 📨 Отправляем итоговое уведомление
-      if: always()
       uses: appleboy/telegram-action@master
+      env:
+        BUILD_RESULT: ${{ needs.build.result }}
+        TEST_RESULT: ${{ needs.test.result }}
+        JOB_STATUS: ${{ job.status }}
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         message: |
-          @if (success())
-          {
-            *✅ СБОРКА УСПЕШНО ЗАВЕРШЕНА!*
-            
-            Все этапы пройдены успешно!
-            
-            📊 *Результаты:*
-            • Восстановление зависимостей: ✅
-            • Компиляция проекта: ✅
-            
-            🎯 *Детали сборки:*
-            • Проект: ${{ github.repository }}
-            • Ветка: ${{ github.ref_name }}
-            • Коммит: $(GITHUB_SHA:0:7)
-            • Время: $(date +"%H:%M:%S")
-            
-            [📋 Открыть логи в GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
-          }
-          @if (failure())
-          {
-            *❌ СБОРКА ПРОВАЛЕНА!*
-            
-            Что-то пошло не так...
-            
-            🔍 *Рекомендации:*
-            1. Проверьте логи сборки
-            2. Убедитесь, что все файлы на месте
-            3. Проверьте зависимости проекта
-            
-            📊 *Статус:* ${{ job.status }}
-            🕒 *Время:* $(date +"%H:%M:%S")
-            
-            [🔧 Открыть логи для отладки](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
-          }
-          @if (cancelled())
-          {
-            *⚠️ СБОРКА ОТМЕНЕНА*
-            
-            Процесс был прерван.
-            
-            ℹ️ *Возможные причины:*
-            • Ручная отмена
-            • Таймаут
-            • Ошибка системы
-            
-            📊 *Статус:* ${{ job.status }}
-          }
-        parse_mode: markdown
-        disable_web_page_preview: true
+          ${{ env.JOB_STATUS == 'success' && '✅ СБОРКА УСПЕШНА!' || env.JOB_STATUS == 'failure' && '❌ СБОРКА НЕ УДАЛАСЬ!' || env.JOB_STATUS == 'cancelled' && '⚠️ СБОРКА ОТМЕНЕНА' || '' }}
+          
+          ${{ env.JOB_STATUS == 'success' && 'Все этапы пройдены успешно!' || env.JOB_STATUS == 'failure' && 'Что-то пошло не так. Проверьте логи в GitHub.' || '' }}
+          
+          📊 Результаты:
+          • Сборка: ${{ env.BUILD_RESULT }}
+          • Тесты: ${{ env.TEST_RESULT }}
+          • Статус: ${{ env.JOB_STATUS }}
+          
+          📋 Детали:
+          • Проект: ${{ github.repository }}
+          • Ветка: ${{ github.ref_name }}
+          • Коммит: ${{ github.sha }}
+          • Время: ${{ steps.get-time.outputs.current_time }}
+          
+          🔗 [Открыть в GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})

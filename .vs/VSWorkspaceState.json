@@ -4,8 +4,9 @@
     "\\.github",
     "\\.github\\workflows",
     "\\src",
-    "\\src\\SimpleApp"
+    "\\src\\SimpleApp",
+    "\\src\\SimpleApp\\bin"
   ],
-  "SelectedNode": "\\src\\SimpleApp\\SimpleApp.csproj",
+  "SelectedNode": "\\.github\\workflows\\telegram-notify.yml",
   "PreviewInSolutionExplorer": false
 }

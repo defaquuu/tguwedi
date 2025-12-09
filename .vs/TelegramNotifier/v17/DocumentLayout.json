@@ -42,8 +42,7 @@
               "RelativeToolTip": "src\\SimpleApp\\SimpleApp.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-08T12:10:52.548Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T12:10:52.548Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "src\\SimpleApp\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T12:10:44.649Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T12:10:44.649Z"
             },
             {
               "$type": "Document",
@@ -68,8 +66,7 @@
               "RelativeToolTip": "src\\SimpleApp\\Calculator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T12:10:36.389Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T12:10:36.389Z"
             },
             {
               "$type": "Document",
@@ -79,7 +76,7 @@
               "RelativeDocumentMoniker": ".github\\workflows\\telegram-notify.yml",
               "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\telegram-notify.yml",
               "RelativeToolTip": ".github\\workflows\\telegram-notify.yml",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAiwGkAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAcwGUAAAB0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
               "WhenOpened": "2025-12-08T12:10:17.647Z",
               "EditorCaption": ""
@@ -87,10 +84,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             }
           ]
         }
