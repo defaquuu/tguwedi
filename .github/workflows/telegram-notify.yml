@@ -31,7 +31,6 @@ jobs:
       run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
 
     - name: 💡 Уведомляем о начале сборки
-      if: ${{ secrets.TELEGRAM_BOT_TOKEN && secrets.TELEGRAM_CHAT_ID }}
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -45,7 +44,7 @@ jobs:
           Коммит: ${{ github.sha }}
 
     - name: 💡 Отправляем итоговое уведомление
-      if: always() && secrets.TELEGRAM_BOT_TOKEN && secrets.TELEGRAM_CHAT_ID
+      if: always()
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
