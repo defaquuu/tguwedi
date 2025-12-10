@@ -1,0 +1,85 @@
+﻿name: 📅 Напоминание о расписании
+
+on:
+  schedule:
+    # Каждый день в 7:30 утра (перед учёбой)
+    - cron: '30 7 * * 1-5' # Пн-Пт в 7:30
+  workflow_dispatch: # Можно запустить вручную
+  push: # При изменении расписания
+
+jobs:
+  send-schedule:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 💬 Загружаем репозиторий
+      uses: actions/checkout@v4
+
+    - name: 💬 Определяем день недели
+      id: day_of_week
+      run: |
+        # Получаем русское название дня недели
+        DAYS=("понедельник" "вторник" "среда" "четверг" "пятница" "суббота" "воскресенье")
+        DAY_NUM=$(date +%u)
+        DAY_INDEX=$((DAY_NUM - 1))
+        DAY_RU=${DAYS[$DAY_INDEX]}
+        echo "day=$DAY_RU" >> $GITHUB_OUTPUT
+        echo "Сегодня: $DAY_RU"
+
+    - name: 💬 Читаем расписание
+      id: read_schedule
+      run: |
+        # Проверяем, есть ли расписание на сегодня
+        if jq -e ".${{ steps.day_of_week.outputs.day }}" schedule.json > /dev/null 2>&1; then
+          echo "has_schedule=true" >> $GITHUB_OUTPUT
+          
+          # Формируем сообщение с расписанием
+          SCHEDULE=$(jq -r ".${{ steps.day_of_week.outputs.day }}[] | \"• \\(.time) - \\(.subject) (ауд. \\(.room))\"" schedule.json)
+          echo "schedule<<EOF" >> $GITHUB_OUTPUT
+          echo "$SCHEDULE" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+        else
+          echo "has_schedule=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: 💬 Отправляем напоминание
+      if: steps.read_schedule.outputs.has_schedule == 'true'
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          📅 РАСПИСАНИЕ НА СЕГОДНЯ
+          
+          День: ${{ steps.day_of_week.outputs.day }}
+          Дата: $(date +"%d.%m.%Y")
+          
+          📚 *Пары:*
+          ${{ steps.read_schedule.outputs.schedule }}
+          
+          🎒 *Что взять с собой:*
+          • Тетради
+          • Ручки
+          • Ноутбук
+          • Воду
+          
+          💪 *Удачи на парах!*
+
+    - name: 💬 Сообщение если пар нет
+      if: steps.read_schedule.outputs.has_schedule == 'false'
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          🎉 СЕГОДНЯ ПАР НЕТ!
+          
+          День: ${{ steps.day_of_week.outputs.day }}
+          
+          Можно отдохнуть или заняться самообразованием!
+          
+          💡 *Идеи на день:*
+          • Повторить пройденный материал
+          • Сделать домашнее задание
+          • Посмотреть обучающие видео
+          • Отдохнуть и восстановить силы

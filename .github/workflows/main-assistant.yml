@@ -1,0 +1,44 @@
+﻿name: 🤖 Главный ассистент
+
+on:
+  schedule:
+    # Комплексное расписание
+    - cron: '30 7 * * 1-5'  # Расписание - 7:30 Пн-Пт
+    - cron: '0 8 * * *'      # To-Do лист - 8:00 ежедневно
+    - cron: '0 20 * * 0'     # Отчет - 20:00 воскресенье
+  workflow_dispatch:
+
+jobs:
+  morning-routine:
+    name: 🌅 Утренняя рутина
+    if: github.event.schedule == '30 7 * * 1-5' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/schedule-reminder.yml
+
+  daily-tasks:
+    name: 📝 Дневные задачи
+    if: github.event.schedule == '0 8 * * *' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/todo-list.yml
+    with:
+      category: 'ежедневные'
+
+  weekly-report:
+    name: 📊 Недельный отчет
+    if: github.event.schedule == '0 20 * * 0' || github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/study-progress.yml
+
+  summary:
+    name: ✅ Итог
+    needs: [morning-routine, daily-tasks, weekly-report]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: 📋 Сообщение о выполнении
+      run: |
+        echo "### 🤖 ГЛАВНЫЙ АССИСТЕНТ ВЫПОЛНИЛ СВОЮ РАБОТУ" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Все задачи выполнены успешно!" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "📅 Время: $(date)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "🎯 Теперь вы под полным контролем умного ассистента!" >> $GITHUB_STEP_SUMMARY

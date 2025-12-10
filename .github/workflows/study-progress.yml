@@ -1,0 +1,91 @@
+﻿name: 📊 Отслеживание прогресса
+
+on:
+  schedule:
+    # Каждое воскресенье в 20:00
+    - cron: '0 20 * * 0'
+  workflow_dispatch:
+
+jobs:
+  progress-report:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📊 Генерируем случайный прогресс (для демо)
+      id: generate_data
+      run: |
+        # Для демо генерируем случайные данные
+        # Случайные числа от 10 до 30 часов
+        HOURS=$((10 + RANDOM % 21))
+        
+        # Случайное количество выполненных задач
+        TASKS_COMPLETED=$((15 + RANDOM % 11))
+        
+        # Случайный прогресс по предметам (в %)
+        MATH_PROGRESS=$((60 + RANDOM % 41))
+        PROGRAMMING_PROGRESS=$((70 + RANDOM % 31))
+        ENGLISH_PROGRESS=$((50 + RANDOM % 51))
+        
+        echo "hours=$HOURS" >> $GITHUB_OUTPUT
+        echo "tasks=$TASKS_COMPLETED" >> $GITHUB_OUTPUT
+        echo "math=$MATH_PROGRESS" >> $GITHUB_OUTPUT
+        echo "programming=$PROGRAMMING_PROGRESS" >> $GITHUB_OUTPUT
+        echo "english=$ENGLISH_PROGRESS" >> $GITHUB_OUTPUT
+
+    - name: 🏆 Определяем достижение
+      id: achievements
+      run: |
+        HOURS=${{ steps.generate_data.outputs.hours }}
+        
+        if [ $HOURS -ge 25 ]; then
+          echo "achievement=Супер-студент! Более 25 часов учёбы!" >> $GITHUB_OUTPUT
+          echo "emoji=🏆" >> $GITHUB_OUTPUT
+        elif [ $HOURS -ge 15 ]; then
+          echo "achievement=Отличная работа! Более 15 часов учёбы" >> $GITHUB_OUTPUT
+          echo "emoji=⭐" >> $GITHUB_OUTPUT
+        else
+          echo "achievement=Хороший старт! Можно уделять больше времени" >> $GITHUB_OUTPUT
+          echo "emoji=👏" >> $GITHUB_OUTPUT
+        fi
+
+    - name: 💬 Отправляем отчет
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          📊 ОТЧЕТ ОБ УЧЕБЕ ЗА НЕДЕЛЮ
+          
+          ${{ steps.achievements.outputs.emoji }} ${{ steps.achievements.outputs.achievement }}
+          
+          📈 *Статистика за неделю:*
+          Часов учёбы: ${{ steps.generate_data.outputs.hours }}
+          Выполнено задач: ${{ steps.generate_data.outputs.tasks }}
+          Дней с учёбой: 7 из 7
+          
+          📚 *Прогресс по предметам:*
+          Математика: ${{ steps.generate_data.outputs.math }}%
+          Программирование: ${{ steps.generate_data.outputs.programming }}%
+          Английский: ${{ steps.generate_data.outputs.english }}%
+          
+          🎯 *Цель на следующую неделю:*
+          Увеличить время учёбы на 10%!
+          
+          💡 *Совет:* Не забывайте делать перерывы и отдыхать!
+
+    - name: 📝 Сохраняем отчет в историю
+      run: |
+        # Сохраняем отчет для истории
+        REPORT="Отчет за неделю $(date +"%d.%m.%Y") \n"
+        REPORT+="Часы учёбы: ${{ steps.generate_data.outputs.hours }} \n"
+        REPORT+="Задачи: ${{ steps.generate_data.outputs.tasks }} \n"
+        REPORT+="Достижение: ${{ steps.achievements.outputs.achievement }} \n"
+        
+        echo -e "$REPORT" >> progress-history.txt
+        
+        # Добавляем в git
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add progress-history.txt
+        git commit -m "Добавлен отчет за неделю" || echo "Нет изменений"
+        git push || echo "Нечего пушить"

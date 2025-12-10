@@ -1,0 +1,70 @@
+﻿name: ✅ Список дел на день
+
+on:
+  schedule:
+    # Каждый день в 8:00 утра
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'Категория задач'
+        required: false
+        default: 'ежедневные'
+        type: choice
+        options:
+          - ежедневные
+          - учебные
+          - личные
+          - все
+
+jobs:
+  generate-todo:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 💬 Загружаем репозиторий
+      uses: actions/checkout@v4
+
+    - name: 💬 Выбираем задачи
+      id: select_tasks
+      run: |
+        CATEGORY="${{ github.event.inputs.category || 'ежедневные' }}"
+        
+        if [ "$CATEGORY" == "все" ]; then
+          # Объединяем все задачи
+          TASKS=$(jq -r '.ежедневные[], .учебные[], .личные[]' tasks.json)
+        else
+          # Задачи только из выбранной категории
+          TASKS=$(jq -r ".$CATEGORY[]" tasks.json)
+        fi
+        
+        # Форматируем задачи со смайликами
+        FORMATTED_TASKS=""
+        IFS=$'\n'
+        for task in $TASKS; do
+          FORMATTED_TASKS+="• $task\n"
+        done
+        
+        echo "tasks<<EOF" >> $GITHUB_OUTPUT
+        echo "$FORMATTED_TASKS" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+        echo "category=$CATEGORY" >> $GITHUB_OUTPUT
+
+    - name: 📝 Отправляем список дел
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          ✅ СПИСОК ДЕЛ НА СЕГОДНЯ
+          
+          Категория: ${{ steps.select_tasks.outputs.category }}
+          Дата: $(date +"%d.%m.%Y")
+          
+          📋 *Задачи:*
+          ${{ steps.select_tasks.outputs.tasks }}
+          
+          💡 *Советы:*
+          1. Сначала выполнить самые важные задачи
+          2. Делать перерывы каждые 45 минут
+          3. Отмечать выполненные задачи

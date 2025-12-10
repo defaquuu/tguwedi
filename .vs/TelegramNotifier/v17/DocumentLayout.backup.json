@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\telegram-notify.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\workflows\\telegram-notify.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\main-assistant.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\workflows\\main-assistant.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\src\\SimpleApp\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\SimpleApp\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\study-progress.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\workflows\\study-progress.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\src\\SimpleApp\\Calculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\SimpleApp\\Calculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\todo-list.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\workflows\\todo-list.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\src\\SimpleApp\\SimpleApp.csproj||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\SimpleApp\\SimpleApp.csproj||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\schedule-reminder.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\workflows\\schedule-reminder.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\progress-history.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:progress-history.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\schedule.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:schedule.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vipil\\Desktop\\TelegramNotifier\\tasks.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:tasks.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,51 +46,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SimpleApp.csproj",
-              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\src\\SimpleApp\\SimpleApp.csproj",
-              "RelativeDocumentMoniker": "src\\SimpleApp\\SimpleApp.csproj",
-              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\src\\SimpleApp\\SimpleApp.csproj",
-              "RelativeToolTip": "src\\SimpleApp\\SimpleApp.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-08T12:10:52.548Z"
+              "DocumentIndex": 0,
+              "Title": "main-assistant.yml",
+              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\main-assistant.yml",
+              "RelativeDocumentMoniker": ".github\\workflows\\main-assistant.yml",
+              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\main-assistant.yml",
+              "RelativeToolTip": ".github\\workflows\\main-assistant.yml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAcwCsAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-12-10T09:47:21.9Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\src\\SimpleApp\\Program.cs",
-              "RelativeDocumentMoniker": "src\\SimpleApp\\Program.cs",
-              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\src\\SimpleApp\\Program.cs",
-              "RelativeToolTip": "src\\SimpleApp\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T12:10:44.649Z"
+              "Title": "study-progress.yml",
+              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\study-progress.yml",
+              "RelativeDocumentMoniker": ".github\\workflows\\study-progress.yml",
+              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\study-progress.yml",
+              "RelativeToolTip": ".github\\workflows\\study-progress.yml",
+              "ViewState": "AgIAADUAAAAAAAAAAAAcwFoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-12-10T09:47:06.291Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Calculator.cs",
-              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\src\\SimpleApp\\Calculator.cs",
-              "RelativeDocumentMoniker": "src\\SimpleApp\\Calculator.cs",
-              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\src\\SimpleApp\\Calculator.cs",
-              "RelativeToolTip": "src\\SimpleApp\\Calculator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T12:10:36.389Z"
+              "Title": "todo-list.yml",
+              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\todo-list.yml",
+              "RelativeDocumentMoniker": ".github\\workflows\\todo-list.yml",
+              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\todo-list.yml",
+              "RelativeToolTip": ".github\\workflows\\todo-list.yml",
+              "ViewState": "AgIAACAAAAAAAAAAAAAcwEUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-12-10T09:46:48.284Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "telegram-notify.yml",
-              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\telegram-notify.yml",
-              "RelativeDocumentMoniker": ".github\\workflows\\telegram-notify.yml",
-              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\telegram-notify.yml",
-              "RelativeToolTip": ".github\\workflows\\telegram-notify.yml",
-              "ViewState": "AgIAABQAAAAAAAAAAAAcwDkAAABlAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "schedule-reminder.yml",
+              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\schedule-reminder.yml",
+              "RelativeDocumentMoniker": ".github\\workflows\\schedule-reminder.yml",
+              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\.github\\workflows\\schedule-reminder.yml",
+              "RelativeToolTip": ".github\\workflows\\schedule-reminder.yml",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAcwFQAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2025-12-08T12:10:17.647Z",
+              "WhenOpened": "2025-12-10T09:46:29.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "progress-history.txt",
+              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\progress-history.txt",
+              "RelativeDocumentMoniker": "progress-history.txt",
+              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\progress-history.txt",
+              "RelativeToolTip": "progress-history.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-12-10T09:46:01.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "tasks.json",
+              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\tasks.json",
+              "RelativeDocumentMoniker": "tasks.json",
+              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\tasks.json",
+              "RelativeToolTip": "tasks.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-10T09:45:38.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "schedule.json",
+              "DocumentMoniker": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\schedule.json",
+              "RelativeDocumentMoniker": "schedule.json",
+              "ToolTip": "C:\\Users\\vipil\\Desktop\\TelegramNotifier\\schedule.json",
+              "RelativeToolTip": "schedule.json",
+              "ViewState": "AgIAACoAAAAAAAAAAAAnwD0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-10T09:45:27.528Z",
               "EditorCaption": ""
             },
             {

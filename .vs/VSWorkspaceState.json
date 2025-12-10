@@ -4,8 +4,8 @@
     "\\.github",
     "\\.github\\workflows",
     "\\src",
-    "\\src\\SimpleApp",
     "\\src\\SimpleApp\\bin"
   ],
+  "SelectedNode": "\\.github\\workflows\\main-assistant.yml",
   "PreviewInSolutionExplorer": false
 }
