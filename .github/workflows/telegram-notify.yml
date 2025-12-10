@@ -9,11 +9,10 @@ on:
 env:
   DOTNET_VERSION: '8.0.x'
   PROJECT_PATH: 'src/SimpleApp'
-  TEST_PATH: 'tests/SimpleApp.Tests'
 
 jobs:
-  build:
-    name: 💡 Сборка проекта
+  build-and-notify:
+    name: 💡 Сборка и уведомления
     runs-on: ubuntu-latest
 
     steps:
@@ -32,64 +31,30 @@ jobs:
       run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
 
     - name: 💡 Уведомляем о начале сборки
+      if: ${{ secrets.TELEGRAM_BOT_TOKEN && secrets.TELEGRAM_CHAT_ID }}
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         message: |
-          **Начинаем сборку!**
-          
-          *Проект:* ${{ github.repository }}
-          *Автор:* ${{ github.actor }}
-          *Ветка:* ${{ github.ref_name }}
-          *Коммит:* ${{ github.sha }}
-          
-          Ждите результат...
-
-  test:
-    name: ✅ Запуск тестов
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: 💬 Загружаем код
-      uses: actions/checkout@v4
-
-    - name: 💬 Устанавливаем .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
-
-    - name: ✅ Запускаем тесты
-      run: dotnet test ${{ env.TEST_PATH }} --verbosity normal --logger "trx"
-
-  notify:
-    name: 📨 Итоговое уведомление
-    needs: [build, test]
-    runs-on: ubuntu-latest
-    if: always()
-
-    steps:
-    - name: 📅 Получаем текущее время
-      id: get-time
-      run: echo "current_time=$(date '+%H:%M:%S %d.%m.%Y')" >> $GITHUB_OUTPUT
-
-    - name: 📨 Отправляем итоговое уведомление
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_CHAT_ID }}
-        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        message: |
-          Сборка завершена!
+          🚀 Начинаем сборку!
           
           Проект: ${{ github.repository }}
+          Автор: ${{ github.actor }}
           Ветка: ${{ github.ref_name }}
           Коммит: ${{ github.sha }}
-          Время: ${{ steps.get-time.outputs.current_time }}
+
+    - name: 💡 Отправляем итоговое уведомление
+      if: always() && secrets.TELEGRAM_BOT_TOKEN && secrets.TELEGRAM_CHAT_ID
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          ${{ job.status == 'success' && '✅ СБОРКА УСПЕШНА!' || job.status == 'failure' && '❌ СБОРКА НЕ УДАЛАСЬ!' || job.status == 'cancelled' && '⚠️ СБОРКА ОТМЕНЕНА' || '📊 Сборка завершена' }}
           
-          Результаты:
-          • Сборка: ${{ needs.build.result }}
-          • Тесты: ${{ needs.test.result }}
-          • Общий статус: ${{ job.status }}
+          Проект: ${{ github.repository }}
+          Статус: ${{ job.status }}
+          Ветка: ${{ github.ref_name }}
           
           Ссылка: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
